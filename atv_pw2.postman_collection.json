@@ -14,6 +14,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_categoria\": \"Eletrodomésticos\",\r\n    \"observacoes_categoria\": \"Produtos em promoções\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/categoria/cadastrarCategoria",
 							"protocol": "http",
@@ -33,23 +42,74 @@
 					"name": "ListarCategoria",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categoria/listarCategoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria",
+								"listarCategoria"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "AlterarCategoria",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categoria/alterarCategoria/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria",
+								"alterarCategoria",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "DeletarCategoria",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/produto/DeletarProduto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produto",
+								"DeletarProduto",
+								"2"
+							]
+						}
 					},
 					"response": []
 				}
@@ -63,6 +123,36 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Silva/Desktop/OneDrive - Etec Centro Paula Souza/trabalhoosa/e6e48ff71c621a0b61e39025ecdd3912-gpLarge.jpg"
+								},
+								{
+									"key": "codigo_categoria",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "nome_produto",
+									"value": "bala",
+									"type": "text"
+								},
+								{
+									"key": "valor_produto",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "descricao_produto",
+									"value": "dove",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "http://localhost:3000/produto/CadastrarProduto",
 							"protocol": "http",
@@ -80,6 +170,38 @@
 				},
 				{
 					"name": "ListarProd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produto/ListarProduto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produto",
+								"ListarProduto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProd/id",
 					"request": {
 						"method": "GET",
 						"header": []
@@ -89,7 +211,7 @@
 				{
 					"name": "AlterarProd",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": []
 					},
 					"response": []
@@ -97,8 +219,21 @@
 				{
 					"name": "DeleteProd",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/produto/DeletarProduto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produto",
+								"DeletarProduto",
+								"2"
+							]
+						}
 					},
 					"response": []
 				}
