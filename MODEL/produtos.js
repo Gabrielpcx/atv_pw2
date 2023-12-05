@@ -2,11 +2,15 @@ const sequelize = require ("sequelize")
 
 const connection = require ("../DATABASE/database")
 
-const produto = connection.define(
+/*Importação da tabela de categoria para criação da chave estrangeira
+representanto a cardinalidade*/
+const categoria = require("./categoria");
+
+const produtos  = connection.define(
     'tbl_produto',
     {
         codigo_produto:{
-            type:sequelize.INTEGER,
+            type:sequelize.INTEGER.UNSIGNED,
             autoIncrement: true,
             primaryKey: true,
         },
@@ -17,7 +21,7 @@ const produto = connection.define(
         },
 
         nome_produto: {
-            type: sequelize.CHAR(255),
+            type: sequelize.STRING(255),
             allowNull: false,
         },
         
@@ -27,16 +31,40 @@ const produto = connection.define(
         },
 
         imagem_produto: {
-            type: sequelize.DataTypes.CHAR(500),
+            type: sequelize.DataTypes.STRING(500),
             allowNull: false,
         },
         descricao_produto:{
             type: sequelize.TEXT,
             allowNull: false,
         },
-    });
+        imagem_url:{
+            type: sequelize.STRING(255),
+            allowNull: false,
+        },
+    },
+    {
+        freezeTableName: true,
+        createdAt: false,
+        updatedAt:false
+    }); 
 
-    produto.sync({force:false});
+/*Implementação da  CHAVE ESTRANGEIRA - LADO N*/
+categoria.hasMany(produtos, {
+    foreignKey: 'codigo_categoria',
+    sourceKey: 'codigo_categoria'
+});
 
-    module.exports.produto;
+
+/*Implementação da  CHAVE PRIMÁRIA - LADO 1*/
+produtos.belongsTo(categoria, {
+    foreignKey: 'codigo_categoria',
+    sourceKey: 'codigo_categoria'
+});
+
+
+
+    produtos.sync({force:false});
+
+    module.exports = produtos;
     

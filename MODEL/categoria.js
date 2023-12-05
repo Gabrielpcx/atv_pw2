@@ -4,7 +4,7 @@
     //IMPORTE DA CONEXAO DO BANCO DE DADOS
     const connection = require ("../DATABASE/database");
     
-    const categoria = connection.define(
+    const categoriaModel = connection.define(
         'tbl_categoria',
         {
             codigo_categoria:{
@@ -16,15 +16,21 @@
                 type:sequelize.STRING(255),
                 allowNull: false,
             },
-            observacoes_catetgoria: {
+            observacoes_categoria: {
                 type:sequelize.TEXT,
-                allowNull: true,            },
+                allowNull: true,            
+            },
+        },
+        {
+            freezeTableName: true,
+            createdAt: false,
+            updatedAt:false
         });
     /*
     SINCRONIZAÇÃO COM O BANCO DE DADOS - CRIA A TABELA CASO ELA NAO EXISTA 
     */
     
-    categoria.sync({force:false}); 
+    categoriaModel.sync({force:false}); 
     
     
-    module.exports.categoria;
+    module.exports = categoriaModel;
